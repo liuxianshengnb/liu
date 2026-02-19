@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Angeles NB886 - 2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        /* 动态背景星星 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 50px 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 90%;
+        }
+        .meme-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        .meme-img {
+            max-width: 380px;
+            height: auto;
+            border-radius: 20px;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+        .meme-img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        /* 图片上的文字 */
+        .overlay-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+        .title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #FF4757;
+            color: #fff;
+            border-color: #FF4757;
+        }
+        .btn-primary:hover {
+            background: transparent;
+            color: #FF4757;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 71, 87, 0.4);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border-color: #fff;
+        }
+        .btn-secondary:hover {
+            background: #fff;
+            color: #0052D4;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.3);
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            .overlay-text {
+                font-size: 1.5rem;
+            }
+            .meme-img {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态星星背景 -->
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <div class="meme-wrapper">
+            <img src="luoshanji.png" alt="Trollface" class="meme-img">
+            <div class="overlay-text">洛杉矶 NB886</div>
+        </div>
+        <h1 class="title">Los Angeles NB886</h1>
+        <p class="subtitle">Where the vibes are always lit and the code never sleeps.</p>
+        <div class="button-group">
+            <a href="#" class="btn btn-primary">Enter the Zone</a>
+            <a href="#" class="btn btn-secondary">Learn More</a>
+        </div>
+    </div>
+
+
+
+    <script>
+        // 生成动态星星背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const count = 100;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+    </script>
+</body>
+</html>
